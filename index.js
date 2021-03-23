@@ -59,9 +59,14 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(/* code here */) {
+function getYears(array, cbGetFinals) {
     /* code here */
+    let a = cbGetFinals(array);
+    let returnArray = [];
+    a.forEach(x => returnArray.push(x.Year));
+    return returnArray;  
 }
+// console.log(getYears(fifaData, getFinals));
 
 
 
@@ -72,9 +77,38 @@ Use the higher-order function getWinners to do the following:
 3. Determines the winner (home or away) of each `finals` game. 
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
+// function getWinners(array, cbGetFinals) {
+//     /* code here */
+//     let winners = [];
+//     cbGetFinals(array).forEach( function(x) {
+//         if (x.["Home Team Goals"] > x.["Away Team Goals"]) {
+//             winners.push(x.["Home Team Name"]);
+//         } else if (x.["Home Team Goals"] < x.["Away Team Goals"]) {
+//             winners.push(x.["Away Team Name"]);
+//         } else {
+//             winners.push("Tie");
+//         }
+//     });
+//     return winners;
+// }
+
+
+function getWinners(array, cbGetFinals) {
     /* code here */
+    let winners = [];
+    cbGetFinals(array).map( function(x) {
+        if (x.["Home Team Goals"] > x.["Away Team Goals"]) {
+            winners.push(x.["Home Team Name"]);
+        } else if (x.["Home Team Goals"] < x.["Away Team Goals"]) {
+            winners.push(x.["Away Team Name"]);
+        } else {
+            winners.push("Tie");
+        }
+    });
+    return winners;
 }
+
+// console.log(getWinners(fifaData, getFinals));
 
 
 
@@ -88,9 +122,17 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
+function getWinnersByYear(array, cbGetYears, cbGetWinners, cbGetFinals) {
     /* code here */
+    let years = cbGetYears(array, cbGetFinals);
+    let winners = cbGetWinners( array, cbGetFinals);
+    let returnArray = [];
+    for (let i = 0; i < years.length; i++) {
+        returnArray.push(`In ${years[i]}, ${winners[i]} won the world cup!`);
+    }
+    return returnArray;
 }
+// console.log(getWinnersByYear(fifaData, getYears, getWinners, getFinals));
 
 
 
