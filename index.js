@@ -6,15 +6,32 @@ import { fifaData } from './fifa.js';
 Practice accessing data by console.log-ing the following pieces of data note, you may want to filter the data first 😉*/
 
 //(a) Home Team name for 2014 world cup final
+const x = fifaData.filter(function(y) {
+    return (y.Datetime.slice(7, 11) === "2014" && y.Stage === "Final");
+   });
+console.log(x[0].["Home Team Name"]);
 
 //(b) Away Team name for 2014 world cup final
+const y = fifaData.filter(function(y) {
+    return (y.Datetime.slice(7, 11) === "2014" && y.Stage === "Final");
+   });
+console.log(y[0].["Away Team Name"]);
 
 //(c) Home Team goals for 2014 world cup final
+const z = fifaData.filter(function(y) {
+    return (y.Datetime.slice(7, 11) === "2014" && y.Stage === "Final");
+   });
+console.log(z[0].["Home Team Goals"]);
 
 //(d) Away Team goals for 2014 world cup final
+const a = fifaData.filter(function(y) {
+    return (y.Datetime.slice(7, 11) === "2014" && y.Stage === "Final");
+   });
+console.log(a[0].["Away Team Goals"]);
+
 
 //(e) Winner of 2014 world cup final */
-
+// console.log(fifaData[5].Datetime.slice(7,11))
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use getFinals to do the following:
@@ -24,9 +41,15 @@ Use getFinals to do the following:
 hint - you should be looking at the stage key inside of the objects
 */
 
-function getFinals(/* code here */) {
+function getFinals(data) {
    /* code here */
+   let a = fifaData.filter(function(y) {
+      return y.Stage === "Final";
+   })
+   return a
 }
+// console.log(getFinals(fifaData));
+
 
 
 
