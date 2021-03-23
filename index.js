@@ -77,21 +77,6 @@ Use the higher-order function getWinners to do the following:
 3. Determines the winner (home or away) of each `finals` game. 
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-// function getWinners(array, cbGetFinals) {
-//     /* code here */
-//     let winners = [];
-//     cbGetFinals(array).forEach( function(x) {
-//         if (x.["Home Team Goals"] > x.["Away Team Goals"]) {
-//             winners.push(x.["Home Team Name"]);
-//         } else if (x.["Home Team Goals"] < x.["Away Team Goals"]) {
-//             winners.push(x.["Away Team Name"]);
-//         } else {
-//             winners.push("Tie");
-//         }
-//     });
-//     return winners;
-// }
-
 
 function getWinners(array, cbGetFinals) {
     /* code here */
@@ -108,7 +93,7 @@ function getWinners(array, cbGetFinals) {
     return winners;
 }
 
-// console.log(getWinners(fifaData, getFinals));
+ console.log(getWinners(fifaData, getFinals));
 
 
 
@@ -146,9 +131,15 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
+function getAverageGoals(cbGetFinals) {
    /* code here */
+   let finals = cbGetFinals;
+   const num = finals.reduce(function(acc, x) {return acc + x["Home Team Goals"] + x["Away Team Goals"]},0)/ finals.length;
+   return num.toFixed(2);
+   
 }
+
+console.log(getAverageGoals(getFinals(fifaData)));
 
 
 
